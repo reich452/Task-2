@@ -103,6 +103,18 @@
                                                     <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                     <textInputTraits key="textInputTraits"/>
                                                 </textField>
+                                                <datePicker contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" datePickerMode="date" minuteInterval="1" translatesAutoresizingMaskIntoConstraints="NO" id="CbY-OD-uXc">
+                                                    <rect key="frame" x="8" y="-87" width="375" height="216"/>
+                                                    <autoresizingMask key="autoresizingMask" widthSizable="YES" flexibleMaxY="YES"/>
+                                                    <gestureRecognizers/>
+                                                    <date key="date" timeIntervalSinceReferenceDate="509160504.07330698">
+                                                        <!--2017-02-19 01:28:24 +0000-->
+                                                    </date>
+                                                    <connections>
+                                                        <action selector="datePickerValueChanged:" destination="tPX-rR-eh4" eventType="valueChanged" id="Yto-py-gm7"/>
+                                                        <outletCollection property="gestureRecognizers" destination="ycb-lZ-2PK" appends="YES" id="9jK-Op-17o"/>
+                                                    </connections>
+                                                </datePicker>
                                             </subviews>
                                             <constraints>
                                                 <constraint firstAttribute="bottom" secondItem="Loi-2J-vzS" secondAttribute="bottom" id="48v-GX-ZZG"/>
@@ -114,6 +126,10 @@
                                                 <constraint firstItem="fZA-41-Owf" firstAttribute="leading" secondItem="vv4-CV-eYp" secondAttribute="leading" id="Xry-Zq-mWY"/>
                                             </constraints>
                                         </tableViewCellContentView>
+                                        <gestureRecognizers/>
+                                        <connections>
+                                            <outletCollection property="gestureRecognizers" destination="ycb-lZ-2PK" appends="YES" id="zS1-BN-fok"/>
+                                        </connections>
                                     </tableViewCell>
                                 </cells>
                             </tableViewSection>
@@ -157,12 +173,18 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="dueDatePicker" destination="CbY-OD-uXc" id="y1T-57-7gQ"/>
                         <outlet property="dueDateTextField" destination="Loi-2J-vzS" id="Vuv-4A-yNt"/>
                         <outlet property="nameTextField" destination="Emd-wb-P38" id="m7W-ap-9Ej"/>
                         <outlet property="notesTextView" destination="eUj-8c-kbT" id="pm6-y6-PVa"/>
                     </connections>
                 </tableViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="GYV-93-u7w" userLabel="First Responder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="ycb-lZ-2PK">
+                    <connections>
+                        <action selector="userTappedView:" destination="tPX-rR-eh4" id="VZ5-ni-YJy"/>
+                    </connections>
+                </tapGestureRecognizer>
             </objects>
             <point key="canvasLocation" x="1794.4000000000001" y="62.518740629685162"/>
         </scene>
