@@ -6,6 +6,8 @@
     <dependencies>
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="11757"/>
+        <capability name="Aspect ratio constraints" minToolsVersion="5.1"/>
+        <capability name="Constraints to layout margins" minToolsVersion="6.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,14 +20,42 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <prototypes>
-                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y2w-A7-HNJ">
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" selectionStyle="default" indentationWidth="10" id="y2w-A7-HNJ" customClass="ButtonTableViewCell" customModule="Task_App_2" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="28" width="375" height="44"/>
                                 <autoresizingMask key="autoresizingMask"/>
                                 <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" tableViewCell="y2w-A7-HNJ" id="yvN-dh-3bf">
                                     <rect key="frame" x="0.0" y="0.0" width="375" height="43"/>
                                     <autoresizingMask key="autoresizingMask"/>
+                                    <subviews>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kJX-Qp-Xwj">
+                                            <rect key="frame" x="8" y="11.5" width="296" height="20.5"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
+                                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="GeX-Do-r0P">
+                                            <rect key="frame" x="310.5" y="-1" width="43.5" height="44"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="GeX-Do-r0P" secondAttribute="height" multiplier="1:1" id="d51-oi-dr1"/>
+                                            </constraints>
+                                            <state key="normal" image="incomplete"/>
+                                            <connections>
+                                                <action selector="buttonTapped:" destination="y2w-A7-HNJ" eventType="touchUpInside" id="AqS-SC-8og"/>
+                                            </connections>
+                                        </button>
+                                    </subviews>
+                                    <constraints>
+                                        <constraint firstItem="kJX-Qp-Xwj" firstAttribute="centerY" secondItem="yvN-dh-3bf" secondAttribute="centerY" id="0hV-s9-cwk"/>
+                                        <constraint firstItem="GeX-Do-r0P" firstAttribute="centerY" secondItem="yvN-dh-3bf" secondAttribute="centerY" id="3cd-63-HeS"/>
+                                        <constraint firstAttribute="trailingMargin" secondItem="GeX-Do-r0P" secondAttribute="trailing" constant="13" id="Abh-7I-6tH"/>
+                                        <constraint firstItem="GeX-Do-r0P" firstAttribute="leading" secondItem="kJX-Qp-Xwj" secondAttribute="trailing" constant="6.5" id="Dgx-hH-j3b"/>
+                                        <constraint firstItem="GeX-Do-r0P" firstAttribute="height" secondItem="yvN-dh-3bf" secondAttribute="height" id="T2M-SB-hCD"/>
+                                        <constraint firstAttribute="leadingMargin" secondItem="kJX-Qp-Xwj" secondAttribute="leading" id="uKd-fk-bv9"/>
+                                    </constraints>
                                 </tableViewCellContentView>
                                 <connections>
+                                    <outlet property="completeButton" destination="GeX-Do-r0P" id="a0g-TS-6rv"/>
+                                    <outlet property="primaryLabel" destination="kJX-Qp-Xwj" id="dXp-4l-bEI"/>
                                     <segue destination="tPX-rR-eh4" kind="show" identifier="taskCell" id="Sqm-lE-dX5"/>
                                 </connections>
                             </tableViewCell>
@@ -207,6 +237,9 @@
             <point key="canvasLocation" x="324" y="63"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="incomplete" width="256" height="256"/>
+    </resources>
     <inferredMetricsTieBreakers>
         <segue reference="Sqm-lE-dX5"/>
     </inferredMetricsTieBreakers>

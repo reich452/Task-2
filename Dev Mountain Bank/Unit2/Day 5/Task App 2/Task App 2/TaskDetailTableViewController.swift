@@ -16,7 +16,11 @@ class TaskDetailTableViewController: UITableViewController {
         dueDateTextField.inputView = dueDatePicker  //se the date picker as teh dueTextFiels input view
     }
     
-    var task: Task?
+    var task: Task? {
+        didSet {
+            updateViews()
+        }
+    }
     var dueDateValue: Date?
     
     private func updateViews() {

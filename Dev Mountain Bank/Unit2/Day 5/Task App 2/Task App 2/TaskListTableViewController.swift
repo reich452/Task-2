@@ -8,17 +8,17 @@
 
 import UIKit
 
-class TaskListTableViewController: UITableViewController {
-
+class TaskListTableViewController: UITableViewController, ButtonTableViewCellDelegate {
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
+        
     }
     
     override func viewWillAppear(_ animated: Bool) {
         tableView.reloadData()
     }
-
+    
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -28,7 +28,10 @@ class TaskListTableViewController: UITableViewController {
     
     
     override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "taskCell", for: indexPath)
+        let task = TaskController.sharedController.tasks[indexPath.row]
+        
+        
         
         
         
@@ -50,6 +53,24 @@ class TaskListTableViewController: UITableViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
+        if segue.identifier == "toAddTaskTVC" {
+            guard let indexPath = tableView.indexPathForSelectedRow else { return }
+            
+            let task = TaskController.sharedController.tasks[indexPath.row]
+            let detailTVC = segue.destination as? TaskListTableViewController
+            detailTVC?.task = task
+            detailTVC?.dueDateValue = task.due as? Date
+            
+        }
     }
+    
+    // MARK: - Delegate
+    
+    func buttonCellButtonTapped(_ sender: ButtonTableViewCell) {
+        guard let indexPath = tableView.indexPathForSelectedRow else { return }
+        let task = TaskController.sharedController.tasks[indexPath.row]
+        TaskController.sharedController.toggleIsCompleteFor(task: task)
+        tableView.reloadRows(at: [indexPath], with: .automatic)
+    }
+    
 }
