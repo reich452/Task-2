@@ -9,42 +9,47 @@
 import UIKit
 
 class TaskDetailTableViewController: UITableViewController {
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-
-
-    }
-    // MARK: - Table view data source
-    
-    override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        
-        return 0
+        self.updateViews()
     }
     
+    var task: Task?
+    var dueDateValue: Date?
     
-    override func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "reuseIdentifier", for: indexPath)
+    func updateViews() {
         
+        guard let task = self.task else { return }
         
+        let stringDate = task.due as Date?
         
-        return cell
+        self.nameTextField.text = task.name
+        self.notesTextView.text = task.notes
+        self.dueDateTextField.text = stringDate?.stringValue()
+        
+    }
+    
+    
+    
+    // MARK: - Actions
+    @IBAction func saveButtonTapped(_ sender: Any) {
+        
+    }
+    
+    @IBAction func cancelButtonTapped(_ sender: Any) {
     }
     
     
-    override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.deleteRows(at: [indexPath], with: .fade)
-            
-        }
-    }
     
-    // MARK: - Navigation
+    // MARK: - Outlets
+    
+    @IBOutlet weak var nameTextField: UITextField!
+    @IBOutlet weak var dueDateTextField: UITextField!
+    @IBOutlet weak var notesTextView: UITextView!
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
-    }
+    
 }
 
 

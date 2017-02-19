@@ -14,12 +14,16 @@ class TaskListTableViewController: UITableViewController {
         super.viewDidLoad()
 
     }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        tableView.reloadData()
+    }
 
     // MARK: - Table view data source
     
     override func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
-        return 0
+        return TaskController.sharedController.tasks.count
     }
     
     
@@ -34,6 +38,9 @@ class TaskListTableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCellEditingStyle, forRowAt indexPath: IndexPath) {
         if editingStyle == .delete {
+            let task = TaskController.sharedController.tasks[indexPath.row]
+            TaskController.sharedController.remove(task: task)
+            
             tableView.deleteRows(at: [indexPath], with: .fade)
             
         }
